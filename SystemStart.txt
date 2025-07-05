@@ -1,0 +1,35 @@
+Clean Screen { Color="White" }
+y = ^ScreenBarHeight - ^SystemHeightImageMenu - 4
+h = ^SystemHeightText 
+        // расчитаем размер systemFont
+xTextField = ConvertFloatToInt(^ScreenWidth / 2) 
+wLabelNameModule = xTextField 
+fontSize=16 
+fontSizeLabel = fontSize 
+        // cообщение в верхней Bar области
+x = 5+^SystemWidthImageMenu+5 
+heightImage = ^SystemHeightImage 
+widthImage = heightImage 
+x = x+^SystemWidthImageMenu+5 
+//wVertically = ConvertFloatToInt(^ScreenWidth-x-^SystemWidthImageMenu-20 ) 
+wVertically = ConvertFloatToInt(^ScreenWidth/2) 
+Create Label { Name = System.BarUp.Message, Action=System.BarUp.Message, X=x, Y=y, Width=wVertically, Height=h, BackgroundColor="LightGrey", TextColor="Black", FontName="systemFont", FontSize=fontSizeLabel, Alignment="Left", LocationDevice="Vertically"}
+wHorizontally = ^ScreenHeight-x-^SystemWidthImageMenu-20 
+Create Label { Name = System.BarUp.Message, Action=System.BarUp.Message, X=x, Y=y, Width=wHorizontally, Height=h, BackgroundColor="LightGrey", TextColor="Black", FontName="systemFont", FontSize=fontSizeLabel, LocationDevice="Horizontally"}
+        // cообщение в нижней Bar области
+x = 0
+yVertically = ^ScreenHeight - h
+wVertically = ^ScreenWidth 
+Create Label { Name = System.BarDown.Message, Action=Action.SystemView.ErrorMessage, X=x, Y=yVertically, Width=wVertically, Height=h, BackgroundColor="LightGrey", TextColor="Black", FontSize=fontSizeLabel, Alignment="Left", LocationDevice="Vertically"}
+yHorizontally = ^ScreenWidth - h
+wHorizontally = ^ScreenHeight 
+Create Label { Name = System.BarDown.Message, Action=Action.SystemView.ErrorMessage, X=x, Y=yHorizontally, Width=wHorizontally, Height=h, BackgroundColor="LightGrey", TextColor="Black", FontSize=fontSizeLabel, LocationDevice="Horizontally"}
+        // cообщение в самой верхей Bar области
+fontSizeWarning = ConvertFloatToInt(14*^SystemCoefficientChangeHeight) 
+hWarning = ConvertFloatToInt(14*^SystemCoefficientChangeHeight) 
+xIndentBegin = 140     // отступ
+xIndentEnd = 80       // отступ
+yVertically = 0 
+Create Label { Name = System.Message.Warning, X=xIndentBegin, Y=yVertically, Width=^ScreenWidth-xIndentBegin-xIndentEnd, Height=hWarning, BackgroundColor="LightGrey", TextColor="Red", FontSize=fontSizeWarning, LocationDevice="Vertically"}
+yHorizontally = 0 
+Create Label { Name = System.Message.Warning, X=xIndentBegin, Y=yHorizontally, Width=^ScreenHeight-xIndentBegin-xIndentEnd, Height=hWarning, BackgroundColor="LightGrey", TextColor="Red", FontSize=fontSizeWarning, LocationDevice="Horizontally"}
